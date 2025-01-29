@@ -1,0 +1,8 @@
+package com.example.fooddeliveryapp.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.fooddeliveryapp.model.Restaurant;
+
+public interface RestuarantRepository extends JpaRepository<Restaurant, Integer> {
+
+}

@@ -1,0 +1,32 @@
+package com.example.fooddeliveryapp.service;
+
+import com.example.fooddeliveryapp.model.Dish;
+import com.example.fooddeliveryapp.repository.DishRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class DishService {
+
+    @Autowired
+    private DishRepository dishRepository;
+
+    public Dish addDish(Dish dish) {
+        return dishRepository.save(dish);
+    }
+
+    public List<Dish> getAllDishes() {
+        return dishRepository.findAll();
+    }
+
+    public Optional<Dish> getDishById(int dishid) {
+        return dishRepository.findById(dishid);
+    }
+
+    public void deleteDish(int dishid) {
+        dishRepository.deleteById(dishid);
+    }
+}

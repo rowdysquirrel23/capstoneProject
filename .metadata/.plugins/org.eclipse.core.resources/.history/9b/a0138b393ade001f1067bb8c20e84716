@@ -1,0 +1,32 @@
+package com.example.fooddeliveryapp.service;
+
+import com.example.fooddeliveryapp.model.Order;
+import com.example.fooddeliveryapp.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class OrderService {
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    public Order placeOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
+    public List<Order> getOrdersByUser(int userid) {
+        return orderRepository.findAll();
+    }
+
+    public Optional<Order> getOrderById(int orderid) {
+        return orderRepository.findById(orderid);
+    }
+
+    public void deleteOrder(int orderid) {
+        orderRepository.deleteById(orderid);
+    }
+}

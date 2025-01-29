@@ -1,0 +1,43 @@
+package com.example.fooddeliveryapp.service;
+
+import com.example.fooddeliveryapp.model.Order;
+import com.example.fooddeliveryapp.model.User;
+import com.example.fooddeliveryapp.repository.OrderRepository;
+import com.example.fooddeliveryapp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class OrderService {
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public Order placeOrder(int userId, double totalPrice) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            Order order = new Order(userOptional.get(), totalPrice);
+            return orderRepository.save(order);
+        } else {
+            throw new RuntimeException("User with ID " + userId + " not found.");
+        }
+    }
+
+    public List<Order> getOrdersByUser(int userId) {
+        return orderRepository.findAll();
+    }
+
+    public Optional<Order> getOrderById(int orderid) {
+        return orderRepository.findById(orderid);
+    }
+
+    public void deleteOrder(int orderid) {
+        orderRepository.deleteById(orderid);
+    }
+}

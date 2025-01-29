@@ -1,0 +1,42 @@
+package com.example.fooddeliveryapp.controller;
+
+import com.example.fooddeliveryapp.model.Order;
+import com.example.fooddeliveryapp.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/orders")
+public class OrderController {
+
+    @Autowired
+    private OrderService orderService;
+
+    // ✅ FIXED: Expect `userId` inside the JSON request body
+    @PostMapping
+    public ResponseEntity<Order> placeOrder(@RequestBody Order order) {
+        return ResponseEntity.ok(orderService.placeOrder(order));
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Order>> getOrdersByUser(@PathVariable int userId) {
+        List<Order> orders = orderService.getOrdersByUser(userId);
+        return ResponseEntity.ok(orders);
+    }
+
+    @GetMapping("/{orderid}")
+    public ResponseEntity<Order> getOrderById(@PathVariable int orderid) {
+        Optional<Order> order = orderService.getOrderById(orderid);
+        return order.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{orderid}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable int orderid) {
+        orderService.deleteOrder(orderid);
+        return ResponseEntity.noContent().build();
+    }
+}

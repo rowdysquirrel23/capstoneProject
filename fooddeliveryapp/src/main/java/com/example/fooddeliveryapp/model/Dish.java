@@ -1,0 +1,81 @@
+package com.example.fooddeliveryapp.model;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "dishes")
+public class Dish {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int dishid;
+	
+	@Column(nullable = false)
+    private String name;
+
+    private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JsonIgnoreProperties("dishes")
+    private Restaurant restaurant;
+    
+    public Dish() {
+    	
+    }
+
+	public Dish(String name, double price, Restaurant restaurant) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.restaurant = restaurant;
+	}
+
+	public int getDishid() {
+		return dishid;
+	}
+
+	public void setDishid(int dishid) {
+		this.dishid = dishid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+	@Override
+	public String toString() {
+		return "Dish [dishid=" + dishid + ", name=" + name + ", price=" + price + ", restaurant=" + restaurant + "]";
+	}
+    
+}

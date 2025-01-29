@@ -1,0 +1,5 @@
+package com.example.fooddeliveryapp.repository;
+
+public interface DishRepository {
+
+}

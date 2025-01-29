@@ -1,0 +1,51 @@
+package com.example.fooddeliveryapp.service;
+
+import com.example.fooddeliveryapp.model.Dish;
+import com.example.fooddeliveryapp.model.Restaurant;
+import com.example.fooddeliveryapp.repository.DishRepository;
+import com.example.fooddeliveryapp.repository.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class DishService {
+
+    @Autowired
+    private DishRepository dishRepository;
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    // ✅ Add a dish to a specific restaurant
+    public Dish addDishToRestaurant(int resid, Dish dish) {
+        Optional<Restaurant> restaurantOptional = restaurantRepository.findById(resid);
+        if (restaurantOptional.isPresent()) {
+            dish.setRestaurant(restaurantOptional.get());
+            return dishRepository.save(dish);
+        }
+        throw new RuntimeException("Restaurant with ID " + resid + " not found");
+    }
+
+    // ✅ Fetch all dishes for a specific restaurant
+    public List<Dish> getDishesByRestaurant(int resid) {
+        return dishRepository.findByRestaurant_Resid(resid); // Ensure repository method exists
+    }
+
+    // ✅ Fetch all dishes
+    public List<Dish> getAllDishes() {
+        return dishRepository.findAll();
+    }
+
+    // ✅ Fetch dish by ID
+    public Optional<Dish> getDishById(int dishid) {
+        return dishRepository.findById(dishid);
+    }
+
+    // ✅ Delete a dish by ID
+    public void deleteDish(int dishid) {
+        dishRepository.deleteById(dishid);
+    }
+}

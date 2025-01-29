@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <h2 class="text-center">Restaurants</h2>
+
+  <!-- Add Restaurant Button -->
+  <div class="text-end">
+    <a routerLink="/add-restaurant" class="btn btn-success">Add Restaurant</a>
+  </div>
+
+  <ul class="list-group mt-3">
+    <li *ngFor="let restaurant of restaurants" class="list-group-item">
+      <a (click)="viewDishes(restaurant.resid)" class="text-decoration-none">
+        {{ restaurant.name }} - {{ restaurant.location }}
+      </a>
+    </li>
+  </ul>
+</div>

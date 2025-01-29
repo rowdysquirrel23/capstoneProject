@@ -1,0 +1,14 @@
+<div class="container mt-4">
+    <h2 class="text-center">Dishes</h2>
+    <div class="text-end">
+      <a [routerLink]="['/restaurants', restaurantId, 'add-dish']" class="btn btn-success">Add Dish</a>
+    </div>
+    <ul class="list-group">
+      <li *ngFor="let dish of dishes" class="list-group-item">
+        {{ dish.name }} - ${{ dish.price }}
+      </li>
+    </ul>
+    <div class="text-end">
+      <a routerLink="/restaurants" class="btn btn-secondary mb-3">← Back to Restaurants</a>
+    </div>
+  </div>

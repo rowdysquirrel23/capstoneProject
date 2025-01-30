@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2 class="text-center">Place an Order</h2>
+
+  <div class="row">
+    <div *ngFor="let dish of dishes" class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ dish.name }}</h5>
+          <p class="card-text fw-bold text-primary">${{ dish.price }}</p>
+          <button class="btn btn-success" (click)="addToCart(dish)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="mt-4">Your Cart</h3>
+  <ul class="list-group">
+    <li *ngFor="let item of cartItems" class="list-group-item">
+      {{ item.dish.name }} - ${{ item.dish.price }} x {{ item.quantity }} = ${{ item.subtotal }}
+    </li>
+  </ul>
+
+  <h4 class="text-center mt-3">Total: ${{ totalPrice }}</h4>
+
+  <div class="text-center mt-4">
+    <a routerLink="/cart" class="btn btn-primary">Go to Cart</a>
+  </div>
+
+  <p class="mt-3 text-success text-center">{{ message }}</p>
+</div>

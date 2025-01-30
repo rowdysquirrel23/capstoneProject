@@ -19,26 +19,49 @@ public class OrderService {
     @Autowired
     private UserRepository userRepository;
 
- 
-    public Order placeOrder(Order order) {
-        Optional<User> userOptional = userRepository.findById(order.getUser().getUserid());
-        if (userOptional.isPresent()) {
-            order.setUser(userOptional.get()); 
-            return orderRepository.save(order);
-        } else {
-            throw new RuntimeException("User with ID " + order.getUser().getUserid() + " not found.");
-        }
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
     }
 
-    public List<Order> getOrdersByUser(int userId) {
-        return orderRepository.findByUser_Userid(userId);
-    }
-
+    // ✅ Fetch an order by ID
     public Optional<Order> getOrderById(int orderid) {
         return orderRepository.findById(orderid);
     }
 
+    // ✅ Fetch all orders for a specific user
+    public List<Order> getOrdersByUser(int userId) {
+        return orderRepository.findByUser_Userid(userId);
+    }
+
+    // ✅ Create an order
+    public Order placeOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
+    // ✅ Delete an order
     public void deleteOrder(int orderid) {
         orderRepository.deleteById(orderid);
     }
+ 
+//    public Order placeOrder(Order order) {
+//        Optional<User> userOptional = userRepository.findById(order.getUser().getUserid());
+//        if (userOptional.isPresent()) {
+//            order.setUser(userOptional.get()); 
+//            return orderRepository.save(order);
+//        } else {
+//            throw new RuntimeException("User with ID " + order.getUser().getUserid() + " not found.");
+//        }
+//    }
+//
+//    public List<Order> getOrdersByUser(int userId) {
+//        return orderRepository.findByUser_Userid(userId);
+//    }
+//
+//    public Optional<Order> getOrderById(int orderid) {
+//        return orderRepository.findById(orderid);
+//    }
+//
+//    public void deleteOrder(int orderid) {
+//        orderRepository.deleteById(orderid);
+//    }
 }

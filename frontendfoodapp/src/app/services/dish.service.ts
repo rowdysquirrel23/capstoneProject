@@ -20,4 +20,7 @@ export class DishService {
   addDish(restaurantId: number, dishData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/restaurant/${restaurantId}`, dishData);
   }
+  getAllDishes(): Observable<any> {
+    return this.http.get(`${this.apiUrl}`);
+  }
 }

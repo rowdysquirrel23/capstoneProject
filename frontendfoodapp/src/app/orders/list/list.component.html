@@ -1,0 +1,11 @@
+<div class="container mt-4">
+    <h2 class="text-center">Your Orders</h2>
+  
+    <ul class="list-group">
+      <li *ngFor="let order of orders" class="list-group-item">
+        Order #{{ order.orderid }} - Total: ${{ order.totalPrice }} - Status: {{ order.status }}
+      </li>
+    </ul>
+  </div>
+  
+  

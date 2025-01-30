@@ -8,6 +8,10 @@ import { DishListComponent } from './dishes/list/list.component';
 import { RestaurantListComponent } from './restaurants/list/list.component';
 import { RestaurantAddComponent } from './restaurants/add/add.component';
 import { DishAddComponent } from './dishes/add/add.component';
+import { OrderListComponent } from './orders/list/list.component';
+import { OrderDetailsComponent } from './orders/details/details.component';
+import { PlaceOrderComponent } from './orders/place/place.component';
+import { CartComponent } from './orders/cart/cart.component';
 
 
 
@@ -19,7 +23,11 @@ import { DishAddComponent } from './dishes/add/add.component';
     RestaurantListComponent,
     DishListComponent,
     RestaurantAddComponent,
-    DishAddComponent
+    DishAddComponent,
+    OrderListComponent,
+    OrderDetailsComponent,
+    PlaceOrderComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@ export class RestaurantAddComponent {
 
     this.restaurantService.addRestaurant(this.restaurant).subscribe(response => {
       this.message = 'Restaurant added successfully!';
-      this.restaurant = { name: '', location: '', rating: 0 }; // Reset form after adding
+      this.restaurant = { name: '', location: '', rating: 0 }; 
     }, error => {
       this.message = 'Error adding restaurant. Please try again.';
     });

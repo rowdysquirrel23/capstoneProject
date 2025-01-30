@@ -1,16 +1,24 @@
 <div class="container mt-4">
   <h2 class="text-center">Restaurants</h2>
 
-  <!-- Add Restaurant Button -->
-  <div class="text-end">
+  <div class="text-end mb-3">
     <a routerLink="/add-restaurant" class="btn btn-success">Add Restaurant</a>
   </div>
+ 
+  <div class="row">
+    <div *ngFor="let restaurant of restaurants" class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ restaurant.name }}</h5>
+          <p class="card-text">{{ restaurant.location }}</p>
+          <p class="text-warning fw-bold">{{ restaurant.rating }} ⭐</p>
+          <button class="btn btn-primary" (click)="viewDishes(restaurant.resid)">View Dishes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <ul class="list-group mt-3">
-    <li *ngFor="let restaurant of restaurants" class="list-group-item">
-      <a (click)="viewDishes(restaurant.resid)" class="text-decoration-none">
-        {{ restaurant.name }} - {{ restaurant.location }}
-      </a>
-    </li>
-  </ul>
+<div class="text-center mt-4">
+  <a routerLink="/place-order" class="btn btn-primary btn-lg"> Start an Order</a>
 </div>
